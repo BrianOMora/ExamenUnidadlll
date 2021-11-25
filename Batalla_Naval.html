@@ -1,0 +1,69 @@
+<script>
+    var posicionesj1= [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+    var posicionesj2= [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+    var fin = "";
+    var final = true;
+    do{
+        posicionesj1= [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+        posicionesj2= [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+        registro();
+        do{
+            juego1();
+            juego2();
+        }while(final == true);
+        fin = prompt("Quieres salir? Si/No");
+    }while(fin == "No");
+
+    function registro(){
+        for(let i = 0; i < 3; i++){
+            let jugador1 = parseInt(prompt("Jugador 1\nEliga donde estara su barco: (Posicion maxima 15)"));
+            let barco = jugador1 - 1;
+                if(posicionesj1[barco] != "B"){
+                    posicionesj1[barco] = "B";
+                }else{
+                    alert("Barcos repetidos, elija de nuevo los barcos");
+                }
+            }
+        for(let i = 0; i < 3; i++){
+            let jugador2 = parseInt(prompt("Jugador 2\nEliga donde estara su barco: (Posicion maxima 15)"));
+            let barco = jugador2 - 1;
+                if(posicionesj2[barco] != "B"){
+                    posicionesj2[barco] = "B";
+                }else{
+                    alert("Barcos repetidos, elija de nuevo los barcos");
+                }
+            }
+        }
+
+    function juego1(){
+        
+        let jugador1 = parseInt(prompt("Jugador 1\nEliga donde atacara: (Posicion maxima 15)"));
+        let ataque = jugador1 - 1;
+        if(posicionesj2[ataque] == "B"){
+            alert("Derribamos un barco");
+            posicionesj2[ataque] = ataque + 1;
+        }else{
+            alert("No le dimos a ningun objetivo!!!");
+        }
+            let perdedor = posicionesj2.indexOf("B");
+            if(perdedor == -1){
+                alert("JUGADOR 1 GANO");
+                final = false;
+            }
+    }
+    function juego2(){
+        let jugador2 = parseInt(prompt("Jugador 2\nEliga donde atacara: (Posicion maxima 15)"));
+        let ataque = jugador2 - 1;
+        if(posicionesj1[ataque] == "B"){
+            alert("Derribamos un barco");
+            posicionesj1[ataque] = ataque + 1;
+        }else{
+            alert("No le dimos a ningun objetivo!!!");
+        }
+            let perdedor = posicionesj1.indexOf("B");
+            if(perdedor == -1){
+                alert("JUGADOR 2 GANO");
+                final = false; 
+            }
+    }
+</script>
